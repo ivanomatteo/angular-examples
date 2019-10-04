@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'a8examples';
+
+
+
+
+  log(x){
+    console.log('log: ', x);
+
+  }
+
+
 }

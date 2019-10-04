@@ -1,0 +1,27 @@
+
+
+<h1 [style.color]="'green'">Buongiorno {{nome}}</h1>
+
+
+oggi è {{oggi | uppercase}}
+
+<pre [ngStyle]="{'background-color':'pink'}">
+  {{giorniSettimana | json}}
+</pre>
+
+<ul>
+  <ng-container *ngFor="let g of giorniSettimana">
+    <li id="xxx" *ngIf="g !== 'lun'" [ngClass]="{'text-blue': g === 'dom'}" (click)="saluta()">
+      {{g}}
+    </li>
+  </ng-container>
+</ul>
+
+<p [ngStyle]="stileParagrafo">
+  questo è un component semplice
+</p>
+
+
+
+
+
