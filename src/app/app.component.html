@@ -1,8 +1,19 @@
+<h1>Esempi Angular 8</h1>
 
 
 
-<app-simple-comonent [nome]="'Salvatore'" (loaded)="log($event)"></app-simple-comonent>
 
+
+<!-- <app-style-and-loops></app-style-and-loops> -->
+
+<div>
+  AppComponent Nome: {{nome}}
+</div>
+<app-input-output
+                  [(nome)]="nome"
+                  descrizione="<b><u>bla bla bla</u></b>"
+                  [snacks]="['nocciole','cookies']"
+                  (loaded)="log($event)"></app-input-output>
 
 
 

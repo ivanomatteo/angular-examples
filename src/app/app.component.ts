@@ -3,17 +3,20 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: []
 })
 export class AppComponent {
   title = 'a8examples';
 
+  nome = 'Salvatore';
 
 
+  log(x) {
+    console.log('app.component_log: ', x);
+  }
 
-  log(x){
-    console.log('log: ', x);
-
+  alert(x) {
+    alert('app.component_alert: ' + x);
   }
 
 

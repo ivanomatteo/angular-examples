@@ -3,12 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SimpleComonentComponent } from './esempi/comp/simple-comonent/simple-comonent.component';
+import { StyleAndLoopsComponent } from './esempi/style-and-loops.component';
+import { InputOutputComponent } from './esempi/input-output.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SimpleComonentComponent
+    StyleAndLoopsComponent,
+    InputOutputComponent
   ],
   imports: [
     BrowserModule,
