@@ -56,11 +56,11 @@ import { Component, OnInit } from '@angular/core';
 
       <button (click)="dammiUnNumero()" >dammi un numero</button>
       <div *ngFor="let n of numeriACaso" >
-        <div *ngIf="n > 50">
+        <div *ngIf="n > 500">
           {{n}}
         </div>
-        <div *ngIf="n <= 50">
-          è <= 50
+        <div *ngIf="n <= 500">
+          è <= 500
         </div>
       </div>
 
