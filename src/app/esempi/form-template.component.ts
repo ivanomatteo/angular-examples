@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UpperCasePipe } from '@angular/common';
+import { Pippo } from './dependency-injection';
 
 @Component({
   selector: 'app-form-template',
@@ -26,32 +27,54 @@ import { UpperCasePipe } from '@angular/common';
         <br><pre>{{form.value | json}}</pre>
   </div>
 
+
+
+
+
+
   <div class="container">
   <h1>Form Template Driven with model</h1>
 
     <form #form2="ngForm" (submit)="submit(model)">
 
       <div class="form-group">
-        <label for="name">Name</label>
+        <label>Name</label>
         <input type="text"  name="name" [(ngModel)]="model.name" required>
       </div>
 
       <div class="form-group">
-        <label for="alterEgo">Alter Ego</label>
+        <label>Alter Ego</label>
         <input type="text" name="alterEgo"
           [ngModel]="model.alterEgo"
           (ngModelChange)="model.alterEgo = $event.trim()"    >
       </div>
       <div class="form-group">
-        <label for="alterEgo">Cognome</label>
+        <label>Cognome</label>
         <input type="text" name="cognome"
           [ngModel]="model.cognome | uppercase"
           (ngModelChange)="model.cognome = uppercase.transform($event)"    >
       </div>
 
+
+      <div class="form-group">
+          <label>Provincia</label>
+          <select #prov="ngModel" class="form-control"
+            name="provincia"
+            (ngModelChange)="model.provincia = $event"
+            [ngModel]="model.provincia?model.provincia:null"
+          >
+            <option [ngValue]="null" [selected]="true">--</option>
+            <option *ngFor="let pr of province" [ngValue]="pr">{{pr}}</option>
+          </select>
+
+      </div>
+
+
       <button type="submit" class="btn btn-success" >Submit</button>
     </form>
-    <br><pre>{{model | json}}</pre>
+    <br>
+    <pre>{{model | json}}</pre>
+
 </div>
   `,
 
@@ -67,7 +90,20 @@ export class FormTemplateComponent implements OnInit {
 
   model: any = {};
 
-  constructor(public uppercase: UpperCasePipe) { }
+  province = [
+    'AG', 'AL', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AT', 'AV', 'BA', 'BG', 'BI', 'BL', 'BN', 'BO', 'BR',
+    'BS', 'BT', 'BZ', 'CA', 'CB', 'CE', 'CH', 'CL', 'CN', 'CO', 'CR', 'CS', 'CT', 'CZ', 'EN', 'FC',
+    'FE', 'FG', 'FI', 'FM', 'FR', 'GE', 'GO', 'GR', 'IM', 'IS', 'KR', 'LC', 'LE', 'LI', 'LO', 'LT',
+    'LU', 'MB', 'MC', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NA', 'NO', 'NU', 'OR', 'PA', 'PC', 'PD',
+    'PE', 'PG', 'PI', 'PN', 'PO', 'PR', 'PT', 'PU', 'PV', 'PZ', 'RA', 'RC', 'RE', 'RG', 'RI', 'RM',
+    'RN', 'RO', 'SA', 'SI', 'SO', 'SP', 'SR', 'SS', 'SU', 'SV', 'TA', 'TE', 'TN', 'TO', 'TP', 'TR',
+    'TS', 'TV', 'UD', 'VA', 'VB', 'VC', 'VE', 'VI', 'VR', 'VT', 'VV'
+  ];
+
+  constructor(public uppercase: UpperCasePipe, private pippo: Pippo) {
+    console.log('pippo: ', pippo);
+
+  }
 
   ngOnInit() {
 

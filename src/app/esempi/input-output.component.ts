@@ -26,7 +26,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 })
 export class InputOutputComponent implements OnInit {
 
-  @Input() nome;
+  @Input() nome = 'ljsdfhklfjsdklfjklsdjfklsd';
   @Output() nomeChange = new EventEmitter<any>();
 
 

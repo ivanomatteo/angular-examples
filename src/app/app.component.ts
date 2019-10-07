@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DependencyInjection } from './esempi/dependency-injection';
+
 
 @Component({
   selector: 'app-root',

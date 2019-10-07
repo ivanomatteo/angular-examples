@@ -9,6 +9,7 @@ import { FormTemplateComponent } from './esempi/form-template.component';
 import { FormReactiveComponent } from './esempi/form-reactive.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // required for template driven forms and reactive forms
+import { Pippo } from './esempi/dependency-injection';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // required f
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [Pippo],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

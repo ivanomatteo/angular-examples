@@ -3,7 +3,9 @@ import 'reflect-metadata';
 
 
 export class Pippo {
-
+  constructor() {
+  }
+  kkk = 'hhhhhhh';
 }
 
 export class Paperino {
@@ -19,7 +21,7 @@ export class Pluto {
 
 
 
-
+/*
 export class DependencyInjection {
 
   static providers = {
@@ -27,19 +29,17 @@ export class DependencyInjection {
   };
 
   static inject(classname) {
-    //const types = Reflect.getMetadata('design:paramtypes', target);
+    // const types = Reflect.getMetadata('design:paramtypes', target);
     if (this.providers[classname]) {
       return this.providers[classname]();
     }
 
     return eval('new ' + classname + '();');
   }
-/*
+
     console.log('DependencyInjection', DependencyInjection.inject('Pippo'));
     console.log('DependencyInjection', DependencyInjection.inject('Paperino'));
     console.log('DependencyInjection', DependencyInjection.inject('Pluto'));
-*/
+  }
 
-
-
-}
+  */
