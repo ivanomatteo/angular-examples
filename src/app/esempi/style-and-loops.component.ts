@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 
   template: `
       <h1 [style.color]="'green'">Buongiorno {{nome}}</h1>
+
       oggi è {{oggi | uppercase}}
 
       <div class="blocco" [style.width.px]="80" >block</div>
@@ -55,7 +56,9 @@ import { Component, OnInit } from '@angular/core';
 
       <button (click)="dammiUnNumero()" >dammi un numero</button>
       <div *ngFor="let n of numeriACaso" >
-        {{n}}
+        <div *ngIf="n < 50">
+          {{n}}
+        </div>
       </div>
 
   `,
