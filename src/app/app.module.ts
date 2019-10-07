@@ -5,17 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StyleAndLoopsComponent } from './esempi/style-and-loops.component';
 import { InputOutputComponent } from './esempi/input-output.component';
+import { FormTemplateComponent } from './esempi/form-template.component';
+import { FormReactiveComponent } from './esempi/form-reactive.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // required for template driven forms and reactive forms
 
 @NgModule({
   declarations: [
     AppComponent,
     StyleAndLoopsComponent,
-    InputOutputComponent
+    InputOutputComponent,
+    FormTemplateComponent,
+    FormReactiveComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

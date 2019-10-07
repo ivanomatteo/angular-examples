@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DependencyInjection } from './esempi/dependency-injection';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'a8examples';
 
   nome = 'Salvatore';
+
+  ngOnInit() {
+
+  }
 
 
   log(x) {
