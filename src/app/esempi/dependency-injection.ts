@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 
 
 export class Pippo {
@@ -25,6 +27,7 @@ export class DependencyInjection {
   };
 
   static inject(classname) {
+    //const types = Reflect.getMetadata('design:paramtypes', target);
     if (this.providers[classname]) {
       return this.providers[classname]();
     }
