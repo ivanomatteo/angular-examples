@@ -10,6 +10,10 @@ import { FormReactiveComponent } from './esempi/form-reactive.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // required for template driven forms and reactive forms
 import { Pippo } from './esempi/dependency-injection';
+import { DynamicFormComponent } from './esempi/dinamicForms/dynamic-form.component';
+import { QuestionComponent } from './esempi/dinamicForms/question.component';
+import { SelectComponent } from './esempi/dinamicForms/controls/select.component';
+import { SortPipe } from './esempi/pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,11 @@ import { Pippo } from './esempi/dependency-injection';
     StyleAndLoopsComponent,
     InputOutputComponent,
     FormTemplateComponent,
-    FormReactiveComponent
+    FormReactiveComponent,
+    DynamicFormComponent,
+    QuestionComponent,
+    SelectComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,
