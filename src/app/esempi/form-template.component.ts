@@ -10,7 +10,9 @@ import { Pippo } from './dependency-injection';
   <div class="container">
       <h1>Form Template Driven</h1>
 
-        <form #form="ngForm" (submit)="submit(form.value)">
+      <!-- (submit) e (ngSubmit) funzionano entrambi, ma (ngSubmit) ci assicura
+      che non venga effettuato un post reale che provochi il cambio di pagina -->
+        <form #form="ngForm" (ngSubmit)="submit(form.value)">
 
           <div class="form-group">
             <label for="name">Name</label>
@@ -35,7 +37,9 @@ import { Pippo } from './dependency-injection';
   <div class="container">
   <h1>Form Template Driven with model</h1>
 
-    <form #form2="ngForm" (submit)="submit(model)">
+   <!-- (submit) e (ngSubmit) funzionano entrambi, ma (ngSubmit) ci assicura
+      che non venga effettuato un post reale che provochi il cambio di pagina -->
+    <form #form2="ngForm" (ngSubmit)="submit(model)">
 
       <div class="form-group">
         <label>Name</label>
@@ -70,12 +74,34 @@ import { Pippo } from './dependency-injection';
       </div>
 
 
+
       <button type="submit" class="btn btn-success" >Submit</button>
     </form>
     <br>
     <pre>{{model | json}}</pre>
 
 </div>
+
+
+
+
+
+<div class="container">
+<h1>Form HTML STANDARD</h1>
+
+  <form ngNoForm action="/yourPage" method="post">
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text"  name="name">
+    </div>
+
+    <button type="submit" class="btn btn-success" >Submit</button>
+  </form>
+  <br>
+
+</div>
+
   `,
 
 
