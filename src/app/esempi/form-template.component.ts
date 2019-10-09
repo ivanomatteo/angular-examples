@@ -6,8 +6,13 @@ import { Pippo } from './dependency-injection';
   selector: 'app-form-template',
   template: `
 
+  <label>
+    <input type="checkbox" ngModel #showForm1="ngModel" [ngModel]="true">
+    mostra il form 1
+  </label>
 
-  <div class="container">
+  <div *ngIf="showForm1.value" class="container">
+
       <h1>Form Template Driven</h1>
 
       <!-- (submit) e (ngSubmit) funzionano entrambi, ma (ngSubmit) ci assicura
@@ -32,9 +37,12 @@ import { Pippo } from './dependency-injection';
 
 
 
+  <label>
+    <input type="checkbox" ngModel #showForm2="ngModel" [ngModel]="true">
+    mostra il form 2
+  </label>
 
-
-  <div class="container">
+  <div *ngIf="showForm2.value"  class="container">
   <h1>Form Template Driven with model</h1>
 
    <!-- (submit) e (ngSubmit) funzionano entrambi, ma (ngSubmit) ci assicura
