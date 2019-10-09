@@ -14,6 +14,10 @@ import { DynamicFormComponent } from './esempi/dinamicForms/dynamic-form.compone
 import { QuestionComponent } from './esempi/dinamicForms/question.component';
 import { SelectComponent } from './esempi/dinamicForms/controls/select.component';
 import { SortPipe } from './esempi/pipes/sort.pipe';
+import { TestBootstrapComponent } from './esempi/test-bootstrap.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { SortPipe } from './esempi/pipes/sort.pipe';
     DynamicFormComponent,
     QuestionComponent,
     SelectComponent,
-    SortPipe
+    SortPipe,
+    TestBootstrapComponent
   ],
   imports: [
     BrowserModule,

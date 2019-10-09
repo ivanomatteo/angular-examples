@@ -10,3 +10,18 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+
+// ------ enable bootstrap and jquery in legacy mode ------
+
+import * as $ from 'jquery';
+import * as Popper from 'popper.js';
+import 'bootstrap';
+window['$'] = $;
+window['jQuery'] = $;
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  // tooltip() function is not declarated in @types/jquery, so we have to cast it to any
+  ($('[data-toggle="tooltip"]') as any).tooltip();
+});
+// ------ enable bootstrap and jquery in legacy mode ------

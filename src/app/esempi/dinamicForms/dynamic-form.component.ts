@@ -11,20 +11,22 @@ import { TextboxQuestion } from './classes/textbox-question';
       <div>
       <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
-        <div *ngFor="let question of questions | sort:{key:'order'}" class="form-row">
+        <div *ngFor="let question of questions | sort:{key:'order'}" class="form-group">
           <app-question [question]="question" [fcontrol]="form.controls[question.key]" ></app-question>
         </div>
 
-        <div class="form-row">
+        <div class="form-group">
           <button type="submit" [disabled]="!form.valid">Save</button>
         </div>
 
       </form>
 
-      <div *ngIf="payLoad" class="form-row">
+      <div *ngIf="payLoad" class="form-group">
         <strong>Saved the following values</strong><br>{{payLoad}}
       </div>
     </div>
+
+
   `,
   styles: [],
 
