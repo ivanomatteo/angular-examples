@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -27,13 +27,26 @@ import { FormBuilder } from '@angular/forms';
         <label>
           First Name:
         </label>
-        <input type="text" formControlName="firstName" required>
+        <input type="text" formControlName="firstName">
+        <div *ngIf="profileForm.controls['firstName'].errors?.required" class="text-danger">
+          Il campo è obbligatorio
+        </div>
+
+
     </div>
     <div class="form-group">
       <label>
         Last Name:
       </label>
       <input type="text" formControlName="lastName">
+      <app-form-control-errors [fControl]="profileForm.controls['lastName']" [errMsgs]="{pattern:'è sbagliato'}"></app-form-control-errors>
+    </div>
+    <div class="form-group">
+      <label>
+        Email:
+      </label>
+      <input type="email" formControlName="email">
+      <app-form-control-errors [fControl]="profileForm.controls['email']"></app-form-control-errors>
     </div>
 
 
@@ -79,6 +92,8 @@ import { FormBuilder } from '@angular/forms';
 })
 export class FormReactiveComponent implements OnInit {
 
+  constructor(private fb: FormBuilder) { }
+
 
   single = new FormControl('');
 
@@ -100,8 +115,29 @@ export class FormReactiveComponent implements OnInit {
 
   // builder syntax
   profileForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.pattern(/^[A-Z][a-zA-Z ]+[a-zA-Z]$/)], // espressione regolare https://regex101.com/
+
+    email: ['', {
+      validators: [
+        Validators.required,
+        Validators.email,
+        Validators.pattern(/^abc.*/),
+
+        // custom validator as arrow function
+        (c: FormControl) => {
+          // return { condition_abc: true }; // single error
+          // return { condition_abc: { aaa:'', bbb:123 } }; // single error with more infomation
+          // return { condition_abc: true, condition_efg: true }; // multiple error
+
+          // return; // or null | undefined = no error
+          // no return = no error
+        }
+      ],
+
+      // updateOn: 'change' || 'blur' || 'submit'
+    }
+    ],
     address: this.fb.group({
       street: [''],
       city: [''],
@@ -110,11 +146,17 @@ export class FormReactiveComponent implements OnInit {
     }),
   });
 
-  constructor(private fb: FormBuilder) { }
+
+
+
 
   ngOnInit() {
 
+
   }
+
+
+
 
   showSingle() {
     console.log('this.single.value: ', this.single.value);

@@ -21,12 +21,16 @@ import { Pippo } from './dependency-injection';
 
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text"  name="name" ngModel required>
+            <input type="text"  name="name" #name="ngModel" ngModel required>
+            <app-form-control-errors [fControl]="name"></app-form-control-errors>
           </div>
 
           <div class="form-group">
             <label for="alterEgo">Alter Ego</label>
-            <input type="text" name="alterEgo" ngModel >
+            <input type="text" name="alterEgo" #alterEgo="ngModel" ngModel required>
+            <div *ngIf="alterEgo.errors['required']" class="text-danger">
+              Il campo è obbligatorio
+            </div>
           </div>
 
           <button type="submit" class="btn btn-success" >Submit</button>
@@ -97,7 +101,7 @@ import { Pippo } from './dependency-injection';
 <div class="container">
 <h1>Form HTML STANDARD</h1>
 
-  <form ngNoForm action="/yourPage" method="post">
+  <form ngNoForm action="/yourPage" target="_blank" method="post">
 
     <div class="form-group">
       <label>Name</label>

@@ -15,6 +15,7 @@ import { QuestionComponent } from './esempi/dinamicForms/question.component';
 import { SelectComponent } from './esempi/dinamicForms/controls/select.component';
 import { SortPipe } from './esempi/pipes/sort.pipe';
 import { TestBootstrapComponent } from './esempi/test-bootstrap.component';
+import { FormControlErrorsComponent } from './esempi/form-control-errors.component';
 
 
 
@@ -30,7 +31,8 @@ import { TestBootstrapComponent } from './esempi/test-bootstrap.component';
     QuestionComponent,
     SelectComponent,
     SortPipe,
-    TestBootstrapComponent
+    TestBootstrapComponent,
+    FormControlErrorsComponent
   ],
   imports: [
     BrowserModule,
