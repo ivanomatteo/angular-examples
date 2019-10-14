@@ -28,7 +28,7 @@ import { Pippo } from './dependency-injection';
           <div class="form-group">
             <label for="alterEgo">Alter Ego</label>
             <input type="text" name="alterEgo" #alterEgo="ngModel" ngModel required>
-            <div *ngIf="alterEgo.errors['required']" class="text-danger">
+            <div *ngIf="alterEgo.errors?.required" class="text-danger">
               Il campo è obbligatorio
             </div>
           </div>
