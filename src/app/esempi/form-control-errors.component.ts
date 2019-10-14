@@ -53,8 +53,9 @@ export class FormControlErrorsComponent implements OnInit, OnDestroy, OnChanges 
     this.updateMessages();
     this.currErrors = this.errorsToArray(this.idError);
 
+
     this.subscriptions.push(
-      this.fControl.valueChanges.subscribe((v) => {
+      this.fControl.statusChanges.subscribe((status) => {
         this.currErrors = this.errorsToArray(this.idError);
       })
     );

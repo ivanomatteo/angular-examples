@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AsyncValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
+import { of, Observable } from 'rxjs';
+import { MyValidators } from './validators/my-validators';
+import { MyValidatorsAsync } from './validators/my-validators-async';
+
+
 
 @Component({
 
@@ -17,6 +22,7 @@ import { FormBuilder } from '@angular/forms';
     <app-form-control-errors [fControl]="single"></app-form-control-errors>
   </div>
   <button  class="btn btn-secondary" (click)="showSingle()" >mostra valore</button>
+
 
 
   <h3>FromGroup</h3>
@@ -95,10 +101,19 @@ export class FormReactiveComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+/*   single = new FormControl('',
+    [Validators.required, Validators.pattern(/^abc.*$/)],
+    this.getAsyncValidator()
+  ); */
 
   single = new FormControl('', {
-    validators: [Validators.required, Validators.pattern(/^abc.*/)],
-    updateOn: 'blur'
+    validators: [
+      Validators.required,
+      MyValidators.contains('abc')
+    ],
+    asyncValidators: [
+      MyValidatorsAsync.contains('super')
+    ]
   });
 
 
@@ -136,6 +151,7 @@ export class FormReactiveComponent implements OnInit {
 
           // return; // or null | undefined = no error
           // no return = no error
+
         }
       ],
 
@@ -154,6 +170,9 @@ export class FormReactiveComponent implements OnInit {
 
 
 
+
+
+
   ngOnInit() {
 
 
@@ -162,12 +181,15 @@ export class FormReactiveComponent implements OnInit {
 
 
 
+
+
   showSingle() {
     console.log('this.single.value: ', this.single.value);
+    console.log('this.single.errors: ', this.single.errors);
   }
   onSubmit() {
-
     console.log('this.profileForm.value: ', this.profileForm.value);
+    console.log('this.profileForm.errors: ', this.profileForm.errors);
   }
 
 }

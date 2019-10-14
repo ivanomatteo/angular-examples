@@ -16,6 +16,8 @@ import { SelectComponent } from './esempi/dinamicForms/controls/select.component
 import { SortPipe } from './esempi/pipes/sort.pipe';
 import { TestBootstrapComponent } from './esempi/test-bootstrap.component';
 import { FormControlErrorsComponent } from './esempi/form-control-errors.component';
+import { IsHelloDirective } from './esempi/validators/templateDirectives/is-hello.directive';
+import { ContainsDirective } from './esempi/validators/templateDirectives/contains.directive';
 
 
 
@@ -32,7 +34,9 @@ import { FormControlErrorsComponent } from './esempi/form-control-errors.compone
     SelectComponent,
     SortPipe,
     TestBootstrapComponent,
-    FormControlErrorsComponent
+    FormControlErrorsComponent,
+    IsHelloDirective,
+    ContainsDirective
   ],
   imports: [
     BrowserModule,
