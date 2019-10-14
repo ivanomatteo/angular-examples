@@ -14,6 +14,7 @@ import { FormBuilder } from '@angular/forms';
         Single FormControl:
     </label>
     <input type="text" [formControl]="single">
+    <app-form-control-errors [fControl]="single"></app-form-control-errors>
   </div>
   <button  class="btn btn-secondary" (click)="showSingle()" >mostra valore</button>
 
@@ -95,7 +96,10 @@ export class FormReactiveComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
 
-  single = new FormControl('');
+  single = new FormControl('', {
+    validators: [Validators.required, Validators.pattern(/^abc.*/)],
+    updateOn: 'blur'
+  });
 
 
   // standard syntax

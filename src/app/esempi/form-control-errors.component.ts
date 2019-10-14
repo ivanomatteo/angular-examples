@@ -31,7 +31,7 @@ export class FormControlErrorsComponent implements OnInit, OnDestroy, OnChanges 
   private defaultMessages = {
     required: 'Il Campo è obbligatorio',
     email: 'l\'email inserita non è valida',
-    pattern: 'Il campo non è valido',
+    pattern: 'Il campo ha un formato errato',
   };
 
   private subscriptions: Subscription[] = [];
