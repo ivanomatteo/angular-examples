@@ -85,7 +85,7 @@ export class FormControlErrorsComponent implements OnInit, OnDestroy, OnChanges 
     if (typeof e === 'string') {
       return this.displayMessages[e] || e;
     } else {
-      return this.displayMessages[e.key] || e.key;
+      return this.displayMessages[e.key] || e.key; // + JSON.stringify(e.value);
     }
 
   }

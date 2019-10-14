@@ -64,6 +64,7 @@ import { MyValidatorsAsync } from './validators/my-validators-async';
               Street:
             </label>
             <input type="text" formControlName="street">
+            <app-form-control-errors [fControl]="profileForm.controls['address'].controls['street']"></app-form-control-errors>
           </div>
           <div class="form-group">
             <label>
@@ -101,10 +102,12 @@ export class FormReactiveComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-/*   single = new FormControl('',
-    [Validators.required, Validators.pattern(/^abc.*$/)],
-    this.getAsyncValidator()
-  ); */
+/*
+  single = new FormControl('',
+      [Validators.required, Validators.pattern(/^abc.*$/)],
+      MyValidatorsAsync.contains('super')
+  );
+*/
 
   single = new FormControl('', {
     validators: [
@@ -114,6 +117,7 @@ export class FormReactiveComponent implements OnInit {
     asyncValidators: [
       MyValidatorsAsync.contains('super')
     ]
+    // , updateOn: 'change' || 'blur' || 'submit'
   });
 
 
@@ -141,10 +145,20 @@ export class FormReactiveComponent implements OnInit {
       validators: [
         Validators.required,
         Validators.email,
-        Validators.pattern(/^abc.*/),
+
 
         // custom validator as arrow function
-        (c: FormControl) => {
+        (c: AbstractControl) => {
+
+
+          console.log('c.value: ', c.value);
+
+          if (c.value.length % 2 === 1 ) {
+            return null; // ok
+          } else {
+            return { numeroCaratteriPari: { aaa: '', bbb: 123 } }; // single error
+          }
+
           // return { condition_abc: true }; // single error
           // return { condition_abc: { aaa:'', bbb:123 } }; // single error with more infomation
           // return { condition_abc: true, condition_efg: true }; // multiple error
@@ -159,7 +173,7 @@ export class FormReactiveComponent implements OnInit {
     }
     ],
     address: this.fb.group({
-      street: [''],
+      street: ['', [ Validators.required, Validators.pattern(/^abc.*/) ]],
       city: [''],
       state: [''],
       zip: ['']
@@ -193,3 +207,24 @@ export class FormReactiveComponent implements OnInit {
   }
 
 }
+
+
+/*
+
+Validatori predefiniti:
+
+class Validators {
+  static min(min: number): ValidatorFn
+  static max(max: number): ValidatorFn
+  static required(control: AbstractControl): ValidationErrors | null
+  static requiredTrue(control: AbstractControl): ValidationErrors | null
+  static email(control: AbstractControl): ValidationErrors | null
+  static minLength(minLength: number): ValidatorFn
+  static maxLength(maxLength: number): ValidatorFn
+  static pattern(pattern: string | RegExp): ValidatorFn
+  static nullValidator(control: AbstractControl): ValidationErrors | null
+  static compose(validators: ValidatorFn[]): ValidatorFn | null
+  static composeAsync(validators: AsyncValidatorFn[]): AsyncValidatorFn | null
+}
+
+*/
