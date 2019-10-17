@@ -1,0 +1,29 @@
+{
+
+  "posts": [
+    { "id": 1, "title": "Sample Title 0","body":"Enim ex consequat ullamco do.", "author": "typicode" },
+    { "id": 2, "title": "Sample Title 1","body":"Duis est exercitation cupidatat voluptate adipisicing magna ipsum qui laboris ex quis eiusmod.", "author": "typicode" },
+    { "id": 3, "title": "Sample Title 2","body":"Officia nisi tempor proident ad dolore non cupidatat Lorem culpa ullamco elit officia est quis.", "author": "typicode" },
+    { "id": 4, "title": "Sample Title 3","body":"Sit ad qui pariatur non eiusmod occaecat duis excepteur reprehenderit labore elit nostrud et.", "author": "typicode" },
+    { "id": 5, "title": "Sample Title 4","body":"Ullamco voluptate ea fugiat ex consequat nisi laboris eiusmod excepteur proident ea consectetur do.", "author": "typicode" },
+    { "id": 6, "title": "Sample Title 5","body":"Mollit mollit pariatur dolor irure amet dolor.", "author": "typicode" },
+    { "id": 7, "title": "Sample Title 6","body":"Excepteur enim enim anim officia amet anim in exercitation occaecat nulla anim proident dolor mollit.", "author": "foo" },
+    { "id": 8, "title": "Sample Title 7","body":"Aliquip non velit et est elit id reprehenderit fugiat occaecat nostrud dolore laboris consectetur.", "author": "foo" },
+    { "id": 9, "title": "Sample Title 8","body":"Dolore mollit incididunt incididunt duis irure ad id id duis pariatur.", "author": "foo" },
+    { "id": 10, "title": "Sample Title 9","body":"Adipisicing ea sint non laborum incididunt qui minim ullamco ipsum elit incididunt ut eu proident.", "author": "foo" }
+
+  ],
+
+  "comments": [
+    { "id": 1, "body": "Ea ea est quis labore id labore occaecat amet exercitation.", "postId": 1 },
+    { "id": 2, "body": "In ex sunt consectetur excepteur esse consectetur.", "postId": 1 },
+    { "id": 3, "body": "Reprehenderit nostrud duis ad officia qui non ut minim do.", "postId": 1 },
+    { "id": 4, "body": "Lorem deserunt irure duis anim ut laboris non ad ut ullamco mollit.", "postId": 1 },
+    { "id": 5, "body": "Id minim id fugiat exercitation anim ea esse culpa in sunt reprehenderit aliqua culpa.", "postId": 2 },
+    { "id": 6, "body": "Consectetur cupidatat exercitation incididunt minim enim elit occaecat in aute occaecat cupidatat.", "postId": 2 },
+    { "id": 7, "body": "Eiusmod incididunt anim ex Lorem cillum mollit non labore laborum amet id adipisicing excepteur non.", "postId": 2 }
+  ],
+
+  "profile": { "username": "typicode", "firstname":"typi" , "lastname":"code" }
+
+}

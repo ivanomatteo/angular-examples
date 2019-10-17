@@ -7,8 +7,10 @@ import { StyleAndLoopsComponent } from './esempi/style-and-loops.component';
 import { InputOutputComponent } from './esempi/input-output.component';
 import { FormTemplateComponent } from './esempi/form-template.component';
 import { FormReactiveComponent } from './esempi/form-reactive.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // required for template driven forms and reactive forms
+
 import { Pippo } from './esempi/dependency-injection';
 import { DynamicFormComponent } from './esempi/dinamicForms/dynamic-form.component';
 import { QuestionComponent } from './esempi/dinamicForms/question.component';
@@ -18,6 +20,8 @@ import { TestBootstrapComponent } from './esempi/test-bootstrap.component';
 import { FormControlErrorsComponent } from './esempi/form-control-errors.component';
 import { IsHelloDirective } from './esempi/validators/templateDirectives/is-hello.directive';
 import { ContainsDirective } from './esempi/validators/templateDirectives/contains.directive';
+import { BlogMainPageComponent } from './esempi/blog/blog-main-page.component';
+import { HttpClientComponent } from './esempi/http-client.component';
 
 
 
@@ -36,13 +40,16 @@ import { ContainsDirective } from './esempi/validators/templateDirectives/contai
     TestBootstrapComponent,
     FormControlErrorsComponent,
     IsHelloDirective,
-    ContainsDirective
+    ContainsDirective,
+    BlogMainPageComponent,
+    HttpClientComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [Pippo],
   bootstrap: [AppComponent]

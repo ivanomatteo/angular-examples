@@ -35,12 +35,20 @@ import { MyValidatorsAsync } from './validators/my-validators-async';
           First Name:
         </label>
         <input type="text" formControlName="firstName">
+        <!--
         <div *ngIf="profileForm.controls['firstName'].errors?.required" class="text-danger">
           Il campo è obbligatorio
         </div>
-
+        <div *ngIf="profileForm.controls['firstName'].errors?.maxlength" class="text-danger">
+          Il campo è troppo lungo
+        </div>
+        -->
+        <div *ngFor="let el of profileForm.controls['firstName'].errors | keyvalue"  class="text-danger">
+            Errore: {{el.key}} {{el.value | json}}
+        </div>
 
     </div>
+
     <div class="form-group">
       <label>
         Last Name:
@@ -48,6 +56,7 @@ import { MyValidatorsAsync } from './validators/my-validators-async';
       <input type="text" formControlName="lastName">
       <app-form-control-errors [fControl]="profileForm.controls['lastName']" [errMsgs]="{pattern:'è sbagliato'}"></app-form-control-errors>
     </div>
+
     <div class="form-group">
       <label>
         Email:
@@ -58,32 +67,39 @@ import { MyValidatorsAsync } from './validators/my-validators-async';
 
 
     <div formGroupName="address">
-          <h3>Address <small>(nested FromGroup)</small></h3>
-          <div class="form-group">
-            <label>
-              Street:
-            </label>
-            <input type="text" formControlName="street">
-            <app-form-control-errors [fControl]="profileForm.controls['address'].controls['street']"></app-form-control-errors>
-          </div>
-          <div class="form-group">
-            <label>
-              City:
-            </label>
-            <input type="text" formControlName="city">
-          </div>
-          <div class="form-group">
-            <label>
-              State:
-            </label>
-            <input type="text" formControlName="state">
-          </div>
-          <div class="form-group">
-            <label>
-              Zip Code:
-            </label>
-            <input type="text" formControlName="zip">
-          </div>
+
+              <h3>Address <small>(nested FormGroup)</small></h3>
+
+              <div class="form-group">
+                <label>
+                  Street:
+                </label>
+                <input type="text" formControlName="street">
+                <app-form-control-errors [fControl]="profileForm.controls['address'].controls['street']"></app-form-control-errors>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  City:
+                </label>
+                <input type="text" formControlName="city">
+                <app-form-control-errors [fControl]="fcMap.address.city"></app-form-control-errors>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  State:
+                </label>
+                <input type="text" formControlName="state">
+                <app-form-control-errors [fControl]="fcMap.address.state"></app-form-control-errors>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  Zip Code:
+                </label>
+                <input type="text" formControlName="zip">
+              </div>
     </div>
 
     <button type="submit" class="btn btn-secondary" [disabled]="!profileForm.valid">submit</button>
@@ -102,12 +118,12 @@ export class FormReactiveComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-/*
-  single = new FormControl('',
-      [Validators.required, Validators.pattern(/^abc.*$/)],
-      MyValidatorsAsync.contains('super')
-  );
-*/
+  /*
+    single = new FormControl('',
+        [Validators.required, Validators.pattern(/^abc.*$/)],
+        MyValidatorsAsync.contains('super')
+    );
+  */
 
   single = new FormControl('', {
     validators: [
@@ -123,22 +139,22 @@ export class FormReactiveComponent implements OnInit {
 
   // standard syntax
   /*
-      profileForm = new FormGroup({
+    profileForm = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       address: new FormGroup({
-        street: new FormControl(''),
+        street: new FormControl('',Validators.required),
         city: new FormControl(''),
         state: new FormControl(''),
         zip: new FormControl('')
       })
     });
+*/
 
-    */
 
   // builder syntax
   profileForm = this.fb.group({
-    firstName: ['', Validators.required],
+    firstName: ['', [Validators.required, Validators.maxLength(10)]],
     lastName: ['', Validators.pattern(/^[A-Z][a-zA-Z ]+[a-zA-Z]$/)], // espressione regolare https://regex101.com/
 
     email: ['', {
@@ -153,7 +169,7 @@ export class FormReactiveComponent implements OnInit {
 
           console.log('c.value: ', c.value);
 
-          if (c.value.length % 2 === 1 ) {
+          if (c.value.length % 2 === 1) {
             return null; // ok
           } else {
             return { numeroCaratteriPari: { aaa: '', bbb: 123 } }; // single error
@@ -173,8 +189,8 @@ export class FormReactiveComponent implements OnInit {
     }
     ],
     address: this.fb.group({
-      street: ['', [ Validators.required, Validators.pattern(/^abc.*/) ]],
-      city: [''],
+      street: ['', [Validators.required, Validators.pattern(/^abc.*/)]],
+      city: ['', Validators.required],
       state: [''],
       zip: ['']
     }),
@@ -184,15 +200,46 @@ export class FormReactiveComponent implements OnInit {
 
 
 
+  fcMap: { [key: string]: any };
+
+
 
 
 
   ngOnInit() {
 
+    this.fcMap = this.mapFormControls(this.profileForm, 1);
+    console.log('this.fcm: ', this.fcMap);
+
 
   }
 
-
+  /**
+   * Map form controls into simple javascript object
+   * @param fg the form group
+   * @param depth the depth of recursion, if === -1 then make a flat map (require unique identifiers)
+   * @param map the object map, optional
+   */
+  mapFormControls(fg: FormGroup, depth: number = 0, map: { [key: string]: any } = {}): { [key: string]: any } {
+    if (fg.controls) {
+      for (const fcn in fg.controls) {
+        if (fg.controls[fcn] instanceof FormGroup) {
+          if (depth > 0) {
+            map[fcn] = this.mapFormControls(fg.controls[fcn] as FormGroup, depth - 1, map[fcn]);
+          } else if (depth === -1) {
+            this.mapFormControls(fg.controls[fcn] as FormGroup, depth, map);
+          }
+          return map;
+        } else {
+          if (map[fcn]) {
+            throw new Error('duplicate identifier: ' + fcn);
+          }
+          map[fcn] = fg.controls[fcn];
+        }
+      }
+    }
+    return map;
+  }
 
 
 
@@ -214,6 +261,7 @@ export class FormReactiveComponent implements OnInit {
 Validatori predefiniti:
 
 class Validators {
+
   static min(min: number): ValidatorFn
   static max(max: number): ValidatorFn
   static required(control: AbstractControl): ValidationErrors | null
@@ -223,6 +271,8 @@ class Validators {
   static maxLength(maxLength: number): ValidatorFn
   static pattern(pattern: string | RegExp): ValidatorFn
   static nullValidator(control: AbstractControl): ValidationErrors | null
+
+
   static compose(validators: ValidatorFn[]): ValidatorFn | null
   static composeAsync(validators: AsyncValidatorFn[]): AsyncValidatorFn | null
 }
