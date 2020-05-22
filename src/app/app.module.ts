@@ -3,25 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StyleAndLoopsComponent } from './esempi/style-and-loops.component';
-import { InputOutputComponent } from './esempi/input-output.component';
-import { FormTemplateComponent } from './esempi/form-template.component';
-import { FormReactiveComponent } from './esempi/form-reactive.component';
+import { StyleAndLoopsComponent } from './examples/style-and-loops.component';
+import { InputOutputComponent } from './examples/input-output.component';
+import { FormTemplateComponent } from './examples/form-template.component';
+import { FormReactiveComponent } from './examples/form-reactive.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // required for template driven forms and reactive forms
 
-import { Pippo } from './esempi/dependency-injection';
-import { DynamicFormComponent } from './esempi/dinamicForms/dynamic-form.component';
-import { QuestionComponent } from './esempi/dinamicForms/question.component';
-import { SelectComponent } from './esempi/dinamicForms/controls/select.component';
-import { SortPipe } from './esempi/pipes/sort.pipe';
-import { TestBootstrapComponent } from './esempi/test-bootstrap.component';
-import { FormControlErrorsComponent } from './esempi/form-control-errors.component';
-import { IsHelloDirective } from './esempi/validators/templateDirectives/is-hello.directive';
-import { ContainsDirective } from './esempi/validators/templateDirectives/contains.directive';
-import { BlogMainPageComponent } from './esempi/blog/blog-main-page.component';
-import { HttpClientComponent } from './esempi/http-client.component';
+import { Pippo } from './examples/dependency-injection';
+import { DynamicFormComponent } from './examples/dinamicForms/dynamic-form.component';
+import { QuestionComponent } from './examples/dinamicForms/question.component';
+import { SelectComponent } from './examples/dinamicForms/controls/select.component';
+import { SortPipe } from './examples/pipes/sort.pipe';
+import { TestBootstrapComponent } from './examples/test-bootstrap.component';
+import { FormControlErrorsComponent } from './examples/form-control-errors.component';
+import { IsHelloDirective } from './examples/validators/templateDirectives/is-hello.directive';
+import { ContainsDirective } from './examples/validators/templateDirectives/contains.directive';
+import { BlogMainPageComponent } from './examples/blog/blog-main-page.component';
+import { HttpClientComponent } from './examples/http-client.component';
 
 
 
