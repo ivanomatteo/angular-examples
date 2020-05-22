@@ -21,7 +21,7 @@ import { Component, OnInit } from '@angular/core';
         <!-- trackBy: serve per migliorare le performace,
             può essere anche una funzione che restituisce l'dentificativo univoco
         -->
-        <ng-container *ngFor="let g of giorniSettimana; trackBy: g; let i = index" [ngSwitch]="g">
+        <ng-container *ngFor="let g of giorniSettimana; let i = index; trackBy: trackByFn; " [ngSwitch]="g">
 
           <li id="xxx" *ngSwitchCase="'lun'"  >
            {{i}} - {{g}} - il primo giorno della settimana
@@ -107,5 +107,9 @@ export class StyleAndLoopsComponent implements OnInit {
 
   dammiUnNumero() {
     this.numeriACaso.push(Math.floor((Math.random() * 1000) + 1));
+  }
+
+  trackByFn(index, item) {
+    return index;//item.id;
   }
 }

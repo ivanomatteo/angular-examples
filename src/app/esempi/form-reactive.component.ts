@@ -75,7 +75,7 @@ import { MyValidatorsAsync } from './validators/my-validators-async';
                   Street:
                 </label>
                 <input type="text" formControlName="street">
-                <app-form-control-errors [fControl]="profileForm.controls['address'].controls['street']"></app-form-control-errors>
+                <app-form-control-errors [fControl]="$any(profileForm.controls['address']).controls['street']"></app-form-control-errors>
               </div>
 
               <div class="form-group">
