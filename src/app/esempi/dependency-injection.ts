@@ -1,7 +1,9 @@
+import { Injectable } from "@angular/core";
 import 'reflect-metadata';
 
 
 
+@Injectable()
 export class Pippo {
   constructor() {
   }
